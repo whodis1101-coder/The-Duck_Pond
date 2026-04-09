@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DuckChat // Night Jungle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="forest-bg"></div>
+    <div class="biolume-glow"></div>
+
+    <div id="auth-page">
+        <div class="organic-shell">
+            <div class="totem-icon">🦆</div>
+            <h1 class="brand-text">DUCK_CHAT</h1>
+            
+            <div id="login-form">
+                <div class="input-nest"><input type="text" id="login-user" placeholder="USERNAME"></div>
+                <div class="input-nest"><input type="password" id="login-pass" placeholder="PASSWORD"></div>
+                <button class="action-btn" onclick="handleLogin()">LOGIN</button>
+                <p class="toggle-text" onclick="toggleAuth()">Create an account</p>
+            </div>
+
+            <div id="signup-form" style="display:none;">
+                <div class="input-nest"><input type="text" id="reg-user" placeholder="CHOOSE USERNAME"></div>
+                <div class="input-nest"><input type="password" id="reg-pass" placeholder="CHOOSE PASSWORD"></div>
+                <button class="action-btn" onclick="handleSignUp()">SIGN UP</button>
+                <p class="toggle-text" onclick="toggleAuth()">Back to login</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-interface" style="display:none;">
+        <div class="interface-root">
+            <aside class="sidebar">
+                <div class="sidebar-top">
+                    <div class="logo">DUCK<span>CHAT</span></div>
+                    <div id="room-list" class="room-nav"></div>
+                </div>
+                <div class="sidebar-bottom">
+                    <button class="util-btn" onclick="openCreateModal()">CREATE ROOM</button>
+                    <button class="util-btn logout" onclick="handleLogout()">LOGOUT</button>
+                </div>
+            </aside>
+
+            <main class="chat-area">
+                <header class="chat-header">
+                    <div class="header-info">
+                        <div class="status-indicator"></div>
+                        <h2 id="current-room-title"># GENERAL</h2>
+                    </div>
+                    <div class="user-profile">
+                        <span id="display-username"></span>
+                        <div class="admin-badge" id="owner-tag" style="display:none;">OWNER</div>
+                    </div>
+                </header>
+
+                <div id="chat-box" class="message-feed"></div>
+
+                <div class="input-zone">
+                    <div class="input-wrap">
+                        <input type="text" id="msg-input" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+                        <button class="send-btn" onclick="sendMessage()">SEND</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="create-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <h3>CREATE NEW ROOM</h3>
+            <div class="input-nest">
+                <input type="text" id="new-room-name" placeholder="ROOM NAME (e.g. pond-life)">
+            </div>
+            <div class="modal-actions">
+                <button class="action-btn" onclick="handleCreateRoom()">CREATE</button>
+                <button class="util-btn" onclick="closeCreateModal()">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
